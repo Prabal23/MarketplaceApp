@@ -1,13 +1,13 @@
 import 'dart:ui' as prefix0;
 
+import 'package:bikroy_app/MainScreen/ChatPage/chat_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:async';
-import './main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'chat_page.dart';
+import '../../main.dart';
 
 class DetailsPage extends StatefulWidget {
   @override

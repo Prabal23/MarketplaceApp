@@ -26,6 +26,7 @@ dependencies:
   connectivity:
   carousel_slider:
   intl:
+  image_picker:
   flutter_multiple_image_picker:
 
 dev_dependencies:

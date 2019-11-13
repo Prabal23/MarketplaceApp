@@ -1,12 +1,8 @@
-import 'package:bikroy_app/my_posts.dart';
-import 'package:bikroy_app/profile_view.dart';
-import 'package:bikroy_app/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import './main.dart';
-import 'favourite.dart';
-import 'homepage.dart';
+
+import '../../main.dart';
 
 class ChatPage extends StatefulWidget {
   @override

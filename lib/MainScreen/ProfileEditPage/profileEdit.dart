@@ -1,297 +1,11 @@
-import 'package:bikroy_app/search.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import './main.dart';
-import 'homepage.dart';
 import 'package:intl/intl.dart';
 
-class ProfileViewPage extends StatefulWidget {
-  @override
-  _ProfileViewPageState createState() => new _ProfileViewPageState();
-}
+import '../../main.dart';
 
-class _ProfileViewPageState extends State<ProfileViewPage> {
-  int _current = 0;
-  int _isBack = 0;
-  String result = '';
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      //backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: header,
-        title: Center(
-          child: Container(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text("My Profile",
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                  GestureDetector(
-                      onTap: () {
-                        editProfile();
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(5), child: Icon(Icons.edit)))
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: new Container(
-              padding: EdgeInsets.all(0.0),
-              //color: Colors.white,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                          padding: EdgeInsets.all(1.0),
-                          child: CircleAvatar(
-                            radius: 30.0,
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: AssetImage('assets/user.png'),
-                          ),
-                          decoration: new BoxDecoration(
-                            color: Colors.grey, // border color
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Hello,",
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.black38),
-                            ),
-                            Text(
-                              "John Smith",
-                              style: TextStyle(fontSize: 17),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(top: 20),
-                      height: 2,
-                      child: Divider()),
-                  Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.home,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Address',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 8, top: 3),
-                                    child: Text(
-                                      "Modina Market",
-                                      style: TextStyle(
-                                          color: Colors.black38, fontSize: 15),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(top: 0),
-                      height: 2,
-                      child: Divider()),
-                  Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.phone,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Phone Number',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 8, top: 3),
-                                    child: Text(
-                                      "017XXXXXXXX",
-                                      style: TextStyle(
-                                          color: Colors.black38, fontSize: 15),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(top: 0),
-                      height: 2,
-                      child: Divider()),
-                  Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.email,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Email',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 8, top: 3),
-                                    child: Text(
-                                      "john.smith@gmail.com",
-                                      style: TextStyle(
-                                          color: Colors.black38, fontSize: 15),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(top: 0),
-                      height: 2,
-                      child: Divider()),
-                  Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.calendar_today,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Birth Date',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 8, top: 3),
-                                    child: Text(
-                                      "23/07/1994",
-                                      style: TextStyle(
-                                          color: Colors.black38, fontSize: 15),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(top: 0),
-                      height: 2,
-                      child: Divider()),
-                  Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.supervisor_account,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Gender',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 8, top: 3),
-                                    child: Text(
-                                      "Male",
-                                      style: TextStyle(
-                                          color: Colors.black38, fontSize: 15),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                ],
-              )),
-        ),
-      ),
-    );
-  }
-
-  void editProfile() {
-    Navigator.of(context).push(new MaterialPageRoute<Null>(
-        builder: (BuildContext context) {
-          return new ProfileEditDialog();
-        },
-        fullscreenDialog: true));
-  }
-}
+import 'package:image_picker/image_picker.dart';
 
 class ProfileEditDialog extends StatefulWidget {
   @override
@@ -299,10 +13,7 @@ class ProfileEditDialog extends StatefulWidget {
 }
 
 class _ProfileEditDialogState extends State<ProfileEditDialog> {
-  int _current = 0;
-  int _isBack = 0;
   String result = '', date = 'Select Birth Date';
-  String _radioGender;
   TextEditingController nameController = new TextEditingController();
   TextEditingController addressController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
@@ -311,6 +22,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
   var dd, finalDate;
   DateTime _date = DateTime.now();
   int gen = 1, gen1 = 0;
+  Future<File> fileImage;
 
   @override
   void initState() {
@@ -324,16 +36,10 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
     super.initState();
   }
 
-  void _getDate() {
-    final DateTime now = DateTime.now();
-    final String formattedDateTime1 = _formatDateTime1(now);
+  pickImagefromGallery(ImageSource src) {
     setState(() {
-      date = formattedDateTime1;
+      fileImage = ImagePicker.pickImage(source: src);
     });
-  }
-
-  String _formatDateTime1(DateTime dateTime) {
-    return DateFormat('dd/MM/yyyy').format(dateTime);
   }
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -365,18 +71,18 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
         _date = picked;
         var dd1 = DateTime.parse(_date.toString());
         String d = "${dd1.day}";
-      if (d.length == 1) {
-        d = "0" + d;
-      } else {
-        d = d;
-      }
-      String m = "${dd1.month}";
-      if (m.length == 1) {
-        m = "0" + m;
-      } else {
-        m = m;
-      }
-      finalDate = "$d/$m/${dd.year}";
+        if (d.length == 1) {
+          d = "0" + d;
+        } else {
+          d = d;
+        }
+        String m = "${dd1.month}";
+        if (m.length == 1) {
+          m = "0" + m;
+        } else {
+          m = m;
+        }
+        finalDate = "$d/$m/${dd.year}";
         var finalDate1 = "$d/$m/${dd1.year}";
         date = finalDate1.toString();
         // DateTime dateTime = DateTime.parse(date);
@@ -384,22 +90,6 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
         // _date = dateTime;
       });
     }
-  }
-
-  void _handleRadioValueChange(String value) {
-    setState(() {
-      _radioGender = value;
-
-      switch (_radioGender) {
-        case '1':
-          //Fluttertoast.showToast(msg: 'Male',toastLength: Toast.LENGTH_SHORT);
-          break;
-        case '2':
-          //Fluttertoast.showToast(msg: 'Female',toastLength: Toast.LENGTH_SHORT);
-          break;
-      }
-      debugPrint(_radioGender);
-    });
   }
 
   @override
@@ -420,85 +110,87 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                          padding: EdgeInsets.all(1.0),
-                          child: CircleAvatar(
-                            radius: 50.0,
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: AssetImage('assets/user.png'),
-                          ),
-                          decoration: new BoxDecoration(
-                            color: Colors.grey, // border color
-                            shape: BoxShape.circle,
-                          ),
+                        FutureBuilder<File>(
+                          future: fileImage,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<File> snapshot) {
+                            if (snapshot.connectionState ==
+                                    ConnectionState.done &&
+                                snapshot.data != null) {
+                              return Container(
+                                //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+                                padding: EdgeInsets.all(1.0),
+                                child: CircleAvatar(
+                                  radius: 50.0,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: FileImage(snapshot.data),
+                                ),
+                                decoration: new BoxDecoration(
+                                  color: Colors.grey, // border color
+                                  shape: BoxShape.circle,
+                                ),
+                              );
+                            } else if (snapshot.error != null) {
+                              return const Text(
+                                'Error Picking Image',
+                                textAlign: TextAlign.center,
+                              );
+                            } else {
+                              return Container(
+                                //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+                                padding: EdgeInsets.all(1.0),
+                                child: CircleAvatar(
+                                  radius: 50.0,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage:
+                                      AssetImage('assets/user.png'),
+                                ),
+                                decoration: new BoxDecoration(
+                                  color: Colors.grey, // border color
+                                  shape: BoxShape.circle,
+                                ),
+                              );
+                            }
+                          },
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
+                        GestureDetector(
+                          onTap: () {
+                            pickImagefromGallery(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 160,
+                            margin: EdgeInsets.only(left: 0, right: 0, top: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                color: Colors.grey[200],
+                                border:
+                                    Border.all(width: 0.2, color: Colors.grey)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(left: 0, right: 10),
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      color: Colors.grey[200],
-                                      border: Border.all(
-                                          width: 0.2, color: Colors.grey)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.image,
-                                        size: 16,
-                                        color: Colors.black54,
-                                      ),
-                                      Container(
-                                          margin: EdgeInsets.only(left: 5),
-                                          child: Text("Gallery",
-                                              style: TextStyle(
-                                                  color: Colors.black54,
-                                                  fontSize: 13)))
-                                    ],
-                                  ),
+                                Icon(
+                                  Icons.image,
+                                  size: 16,
+                                  color: Colors.black54,
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 0, right: 10),
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      color: Colors.grey[200],
-                                      border: Border.all(
-                                          width: 0.2, color: Colors.grey)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.photo_camera,
-                                        size: 16,
-                                        color: Colors.black54,
-                                      ),
-                                      Container(
-                                          margin: EdgeInsets.only(left: 5),
-                                          child: Text("Camera",
-                                              style: TextStyle(
-                                                  color: Colors.black54,
-                                                  fontSize: 13)))
-                                    ],
-                                  ),
-                                ),
+                                    margin: EdgeInsets.only(left: 5),
+                                    child: Text("Select photo",
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 13)))
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -520,6 +212,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
                                   Border.all(width: 0.2, color: Colors.grey)),
                           child: TextField(
                             controller: nameController,
+                            autofocus: true,
                             style: TextStyle(color: Colors.black54),
                             decoration: InputDecoration(
                               hintText: 'Type your name...',
