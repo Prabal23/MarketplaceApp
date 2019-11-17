@@ -1,4 +1,4 @@
-package com.example.bikroy_app;
+package com.product.marketplace;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
