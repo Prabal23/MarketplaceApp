@@ -1,8 +1,12 @@
+import 'package:bikroy_app/Cards/FriendChatCard/friendChatCard.dart';
+import 'package:bikroy_app/Cards/MyChatCard/myChatCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../main.dart';
+
+List<String> messages = [];
 
 class ChatPage extends StatefulWidget {
   @override
@@ -14,16 +18,9 @@ class _ChatPageState extends State<ChatPage> {
   int _isBack = 0;
   String result = '', msg = '';
   TextEditingController msgController = new TextEditingController();
-  //ScrollController _scrollController = new ScrollController();
-  List<String> messages = [];
 
   @override
   void initState() {
-    // _scrollController.animateTo(
-    //   0.0,
-    //   curve: Curves.easeOut,
-    //   duration: const Duration(milliseconds: 300),
-    // );
     super.initState();
   }
 
@@ -50,7 +47,6 @@ class _ChatPageState extends State<ChatPage> {
       body: SafeArea(
         child: new Container(
             padding: EdgeInsets.all(0.0),
-            //color: Colors.grey[100],
             color: chat_back,
             child: Column(
               children: <Widget>[
@@ -60,19 +56,7 @@ class _ChatPageState extends State<ChatPage> {
                   color: Colors.white,
                   child: Row(
                     children: <Widget>[
-                      // Container(
-                      //   //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                      //   padding: EdgeInsets.all(1.0),
-                      //   child: CircleAvatar(
-                      //     radius: 25.0,
-                      //     backgroundColor: Colors.transparent,
-                      //     backgroundImage: AssetImage('assets/user.png'),
-                      //   ),
-                      //   decoration: new BoxDecoration(
-                      //     color: Colors.grey, // border color
-                      //     shape: BoxShape.circle,
-                      //   ),
-                      // ),
+                      ////// <<<<< Title pic >>>>> //////
                       Container(
                         padding: const EdgeInsets.all(5.0),
                         margin: EdgeInsets.only(top: 5),
@@ -95,6 +79,7 @@ class _ChatPageState extends State<ChatPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              ////// <<<<< Title product >>>>> //////
                               Container(
                                 margin: EdgeInsets.only(left: 3),
                                 child: Text(
@@ -106,6 +91,7 @@ class _ChatPageState extends State<ChatPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
+                              ////// <<<<< Title product place >>>>> //////
                               Container(
                                 margin: EdgeInsets.only(top: 3),
                                 child: Row(
@@ -141,213 +127,26 @@ class _ChatPageState extends State<ChatPage> {
                 Expanded(
                   child: Container(
                     child: ListView.builder(
-                        //controller: _scrollController,
                         itemCount: messages.length,
-                        //reverse: true,
                         itemBuilder: (BuildContext context, int index) =>
                             index % 2 == 0
-                                ? Container(
-                                    child: ListTile(
-                                      title: Container(
-                                        margin: EdgeInsets.only(
-                                            left: 0, right: 0, top: 5),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Container(
-                                                //margin: EdgeInsets.only(top: 5),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.all(10),
-                                                      margin: EdgeInsets.only(
-                                                          top: 4, left: 70),
-                                                      decoration:
-                                                          new BoxDecoration(
-                                                        //color: header,
-                                                        color: my_chat,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5)),
-                                                        border: Border.all(
-                                                            width: 0.2,
-                                                            color: Colors.grey),
-                                                      ),
-                                                      //color: Colors.white,
-                                                      child: Text(
-                                                        "${messages[index]}",
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          top: 5),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: <Widget>[
-                                                          Text(
-                                                            "24/07/19",
-                                                            style: TextStyle(
-                                                                fontSize: 11,
-                                                                color: Colors
-                                                                    .grey),
-                                                          ),
-                                                          Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                      left: 3),
-                                                              child: messages
-                                                                          .length ==
-                                                                      index + 1
-                                                                  ? Icon(
-                                                                      Icons
-                                                                          .done,
-                                                                      size: 15,
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    )
-                                                                  : Icon(
-                                                                      Icons
-                                                                          .done_all,
-                                                                      size: 15,
-                                                                      color: Colors
-                                                                          .blueAccent,
-                                                                    ))
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    child: ListTile(
-                                      title: Container(
-                                        margin: EdgeInsets.only(
-                                            left: 0, right: 0, top: 5),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Container(
-                                                //margin: EdgeInsets.only(top: 5),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.all(10),
-                                                      margin: EdgeInsets.only(
-                                                          top: 4, right: 70),
-                                                      decoration:
-                                                          new BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5)),
-                                                        border: Border.all(
-                                                            width: 0.2,
-                                                            color: Colors.grey),
-                                                      ),
-                                                      //color: Colors.white,
-                                                      child: Text(
-                                                        "${messages[index]}",
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          top: 5),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: <Widget>[
-                                                          Text(
-                                                            "24/07/19",
-                                                            style: TextStyle(
-                                                                fontSize: 11,
-                                                                color: Colors
-                                                                    .grey),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )),
+                                ////// <<<<< My Chat card >>>>> //////
+                                ? MyChatCard(index)
+
+                                ////// <<<<< Friend Chat card >>>>> //////
+                                : FriendChatCard(index)),
                   ),
                 ),
-                // Container(
-                //   height: 2,
-                //   child: Divider(
-                //     color: Colors.grey,
-                //   ),
-                // ),
+                ////// <<<<< Send message >>>>> //////
                 Container(
-                  //color: Colors.white,
                   child: Row(
                     children: <Widget>[
                       Flexible(
-                        // child: Container(
-                        //   padding: EdgeInsets.all(5),
-                        //   margin: EdgeInsets.all(15),
-                        //   decoration: BoxDecoration(
-                        //       borderRadius:
-                        //           BorderRadius.all(Radius.circular(0.0)),
-                        //       color: Colors.grey[100],
-                        //       border: Border.all(width: 0.2, color: Colors.grey)),
-                        //   child: TextFormField(
-                        //     autofocus: false,
-                        //     decoration: InputDecoration(
-                        //       hintText: 'Type message...',
-                        //       //labelText: 'Enter E-mail',
-                        //       contentPadding:
-                        //           EdgeInsets.fromLTRB(0.0, 5.0, 20.0, 5.0),
-                        //       border: InputBorder.none,
-                        //     ),
-                        //     validator: (val) =>
-                        //         val.isEmpty ? 'Field is empty' : null,
-                        //     onSaved: (val) => result = val,
-                        //     //validator: _validateEmail,
-                        //   ),
-                        // ),
                         child: Container(
-                          //height: 100,
                           padding: EdgeInsets.all(0),
                           margin: EdgeInsets.only(
                               top: 5, left: 10, bottom: 5, right: 10),
                           decoration: BoxDecoration(
-                              // borderRadius:
-                              //     BorderRadius.all(Radius.circular(100.0)),
                               borderRadius: new BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
@@ -403,15 +202,8 @@ class _ChatPageState extends State<ChatPage> {
                             double idex = dex.toDouble();
                             print(idex);
                             setState(() {
-                              //messages.insert(0, msg);
                               messages.add(msg);
-                              //print("success");
                               msgController.text = '';
-                              // _scrollController.animateTo(
-                              //   idex,
-                              //   curve: Curves.easeOut,
-                              //   duration: const Duration(milliseconds: 300),
-                              // );
                             });
                           } else {}
                         },
@@ -436,40 +228,6 @@ class _ChatPageState extends State<ChatPage> {
               ],
             )),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Row(
-      //     children: <Widget>[
-      //       Flexible(
-      //         child: Container(
-      //           padding: EdgeInsets.all(5),
-      //           margin: EdgeInsets.all(15),
-      //           decoration: BoxDecoration(
-      //               borderRadius: BorderRadius.all(Radius.circular(0.0)),
-      //               color: Colors.grey[100],
-      //               border: Border.all(width: 0.2, color: Colors.grey)),
-      //           child: TextFormField(
-      //             autofocus: false,
-      //             decoration: InputDecoration(
-      //               hintText: 'Type message...',
-      //               //labelText: 'Enter E-mail',
-      //               contentPadding: EdgeInsets.fromLTRB(0.0, 5.0, 20.0, 5.0),
-      //               border: InputBorder.none,
-      //             ),
-      //             validator: (val) => val.isEmpty ? 'Field is empty' : null,
-      //             onSaved: (val) => result = val,
-      //             //validator: _validateEmail,
-      //           ),
-      //         ),
-      //       ),
-      //       Container(
-      //           margin: EdgeInsets.only(right: 15),
-      //           child: Icon(
-      //             Icons.send,
-      //             color: header,
-      //           ))
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
