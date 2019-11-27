@@ -1,12 +1,12 @@
 import 'dart:ui' as prefix0;
-
+//import 'package:call_number/call_number.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:bikroy_app/MainScreen/ChatPage/chat_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import '../../main.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -71,6 +71,10 @@ class DetailsPageState extends State<DetailsPage>
       _ratingStatus = "Excellent";
     }
   }
+
+  // _callPhone() async {
+  //   await new CallNumber().callNumber('+88' + '01781610033');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -664,131 +668,125 @@ class DetailsPageState extends State<DetailsPage>
                               height: 240,
                               child: new ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext context,
-                                        int index) =>
-                                    new Container(
-                                      //color: Colors.white,
-                                      margin:
-                                          EdgeInsets.only(left: 15, bottom: 15),
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0)),
-                                        color: Colors.white,
-                                        border: Border.all(
-                                            width: 0.3, color: Colors.grey),
-                                        // boxShadow: [
-                                        //   BoxShadow(
-                                        //     blurRadius: 0.5,
-                                        //     color: Colors.black.withOpacity(.5),
-                                        //     //offset: Offset(6.0, 7.0),
-                                        //   ),
-                                        // ],
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailsPage()),
-                                          );
-                                        },
-                                        child: Container(
-                                          //padding: EdgeInsets.only(left: 20),
-                                          width: 100,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Container(
-                                                  height: 100,
-                                                  child: Image.asset(
-                                                      'assets/shirt.jpg')),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                "Product Name",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.black54),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(top: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Row(
-                                                      children: <Widget>[
-                                                        Icon(
-                                                          Icons.attach_money,
-                                                          color: Colors.black87,
-                                                          size: 17,
-                                                        ),
-                                                        Text(
-                                                          "20.25",
-                                                          style: TextStyle(
-                                                              fontSize: 15,
-                                                              color: Colors
-                                                                  .black87,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(top: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Row(
-                                                      children: <Widget>[
-                                                        Icon(
-                                                          Icons.location_on,
-                                                          color: Colors.black45,
-                                                          size: 14,
-                                                        ),
-                                                        Text(
-                                                          "Sylhet",
-                                                          style: TextStyle(
-                                                              fontSize: 13,
-                                                              color: Colors
-                                                                  .black45),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(top: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      "23/07/19  12 PM",
-                                                      style: TextStyle(
-                                                          fontSize: 11,
-                                                          color: Colors.grey),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                        new Container(
+                                  //color: Colors.white,
+                                  margin: EdgeInsets.only(left: 15, bottom: 15),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        width: 0.3, color: Colors.grey),
+                                    // boxShadow: [
+                                    //   BoxShadow(
+                                    //     blurRadius: 0.5,
+                                    //     color: Colors.black.withOpacity(.5),
+                                    //     //offset: Offset(6.0, 7.0),
+                                    //   ),
+                                    // ],
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsPage()),
+                                      );
+                                    },
+                                    child: Container(
+                                      //padding: EdgeInsets.only(left: 20),
+                                      width: 100,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                              height: 100,
+                                              child: Image.asset(
+                                                  'assets/shirt.jpg')),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
+                                          Text(
+                                            "Product Name",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.black54),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.attach_money,
+                                                      color: Colors.black87,
+                                                      size: 17,
+                                                    ),
+                                                    Text(
+                                                      "20.25",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          color: Colors.black87,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.location_on,
+                                                      color: Colors.black45,
+                                                      size: 14,
+                                                    ),
+                                                    Text(
+                                                      "Sylhet",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color:
+                                                              Colors.black45),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text(
+                                                  "23/07/19  12 PM",
+                                                  style: TextStyle(
+                                                      fontSize: 11,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
+                                  ),
+                                ),
                                 itemCount: 20,
                               ),
                             ),
@@ -1060,23 +1058,30 @@ class DetailsPageState extends State<DetailsPage>
                       ],
                     ),
                   ),
-                  Center(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 10, right: 20, top: 20),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          color: header,
-                          border: Border.all(width: 0.2, color: Colors.grey)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: Text("Call",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14)))
-                        ],
+                  GestureDetector(
+                    onTap: () {
+                      //_callPhone();
+                      launch("tel:+8801781610033");
+                    },
+                    child: Center(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10, right: 20, top: 20),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            color: header,
+                            border: Border.all(width: 0.2, color: Colors.grey)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text("Call",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14)))
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -43,6 +43,7 @@ class SearchPageState extends State<SearchPage>
               color: Colors.white,
               child: Column(
                 children: <Widget>[
+                  ////// <<<<< Type location >>>>> //////
                   Container(
                     padding: EdgeInsets.all(5),
                     margin: EdgeInsets.all(15),
@@ -76,6 +77,7 @@ class SearchPageState extends State<SearchPage>
                       child: Divider(
                         color: Colors.grey,
                       )),
+                  ////// <<<<< Select location >>>>> //////
                   Container(
                       //color: Colors.white,
                       padding: EdgeInsets.all(20),
@@ -96,6 +98,7 @@ class SearchPageState extends State<SearchPage>
                                           fontSize: 15))),
                             ],
                           ),
+                          ////// <<<<< Change location >>>>> //////
                           GestureDetector(
                             onTap: () {
                               locationSearch();

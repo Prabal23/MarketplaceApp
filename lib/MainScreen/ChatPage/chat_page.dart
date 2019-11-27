@@ -198,9 +198,9 @@ class _ChatPageState extends State<ChatPage> {
                       GestureDetector(
                         onTap: () {
                           if (msg != '') {
-                            int dex = messages.length;
-                            double idex = dex.toDouble();
-                            print(idex);
+                            // int dex = messages.length;
+                            // double idex = dex.toDouble();
+                            // print(idex);
                             setState(() {
                               messages.add(msg);
                               msgController.text = '';

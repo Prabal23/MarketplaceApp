@@ -59,6 +59,7 @@ class ProductPageState extends State<ProductPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
+                        ////// <<<<< Location search >>>>> //////
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
@@ -83,6 +84,7 @@ class ProductPageState extends State<ProductPage> {
                             child: VerticalDivider(
                               color: Colors.grey,
                             )),
+                        ////// <<<<< Category search >>>>> //////
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
@@ -108,6 +110,7 @@ class ProductPageState extends State<ProductPage> {
                             child: VerticalDivider(
                               color: Colors.grey,
                             )),
+                        ////// <<<<< Filter products >>>>> //////
                         GestureDetector(
                           onTap: () {
                             filterPage();
