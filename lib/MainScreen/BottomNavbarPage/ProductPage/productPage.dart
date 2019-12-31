@@ -16,6 +16,58 @@ class ProductPage extends StatefulWidget {
 class ProductPageState extends State<ProductPage> {
   bool internet = true;
   int currentIndex = selectedPage;
+
+  List productList = [
+    {
+      "image": "assets/pant.jpg",
+      "name": "Pant",
+      "tag": "",
+      "price": 35.5,
+      "address": "Pathantula",
+      "time": "Just Now",
+    },
+    {
+      "image": "assets/watch.jpeg",
+      "name": "Watch",
+      "tag": "35% Off",
+      "price": 56.5,
+      "address": "Akhalia",
+      "time": "Just Now",
+    },
+    {
+      "image": "assets/shoe.png",
+      "name": "Shoe",
+      "tag": "New",
+      "price": 43.0,
+      "address": "Subidbazar",
+      "time": "2 hours ago",
+    },
+    {
+      "image": "assets/s1.jpg",
+      "name": "Shirt",
+      "tag": "New",
+      "price": 40.5,
+      "address": "Modina Market",
+      "time": "2 days ago",
+    },
+    {
+      "image": "assets/tshirt.png",
+      "name": "T-shirt",
+      "tag": "",
+      "price": 34.0,
+      "address": "Bondor Bazar",
+      "time": "5 days ago",
+    },
+    {
+      "image": "assets/hoody.jpg",
+      "name": "Hoody",
+      "tag": "20% Off",
+      "price": 40.0,
+      "address": "Baghbari",
+      "time": "20 days ago",
+    },
+  ];
+
   @override
   void initState() {
     internetCheck();
@@ -150,7 +202,7 @@ class ProductPageState extends State<ProductPage> {
                     children: <Widget>[
                       Container(
                         //margin: EdgeInsets.all(5),
-                        child: Text("1903 Results",
+                        child: Text("${productList.length} Results",
                             style: TextStyle(fontSize: 12, color: header)),
                       ),
                     ],
@@ -191,9 +243,9 @@ class ProductPageState extends State<ProductPage> {
                                       (BuildContext context, int index) =>
                                           new Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: ProductPortraitCard(index),
+                                    child: ProductPortraitCard(productList[index]),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 )
                               ////// <<<<< Portrait Card end >>>>> //////
                               :
@@ -213,9 +265,9 @@ class ProductPageState extends State<ProductPage> {
                                       (BuildContext context, int index) =>
                                           new Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: ProductLandCard(index),
+                                    child: ProductLandCard(productList[index]),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 );
                           ////// <<<<< Landscape Card end >>>>> //////
                         },

@@ -15,13 +15,13 @@ class ProfileOptDialog extends StatefulWidget {
 
 class _ProfileOptDialogState extends State<ProfileOptDialog> {
   String result = '';
-  int _current = 0;
+  int _current = 1;
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await showDialogBox();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await showDialogBox();
+    // });
     super.initState();
   }
 
@@ -271,8 +271,8 @@ class _ProfileOptDialogState extends State<ProfileOptDialog> {
                               padding: EdgeInsets.all(1.0),
                               child: CircleAvatar(
                                 radius: 30.0,
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage('assets/user.png'),
+                                backgroundColor: Colors.white,
+                                backgroundImage: AssetImage('assets/man.png'),
                               ),
                               decoration: new BoxDecoration(
                                 color: Colors.grey, // border color

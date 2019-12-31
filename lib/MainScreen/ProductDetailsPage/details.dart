@@ -1,13 +1,13 @@
-import 'dart:ui' as prefix0;
-//import 'package:call_number/call_number.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:bikroy_app/MainScreen/ChatPage/chat_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'dart:async';
+// import 'package:share/share.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../main.dart';
+import 'package:advanced_share/advanced_share.dart';
 
 class DetailsPage extends StatefulWidget {
   @override
@@ -23,14 +23,30 @@ class DetailsPageState extends State<DetailsPage>
   AnimationController controller;
   bool _isLoggedIn = false;
   String _debugLabelString = "", review = '', _ratingStatus = '';
+  int favorite = 0;
   bool _requireConsent = false;
   CarouselSlider carouselSlider;
-  int _current = 0, active = 0;
+  int _current = 0, active = 0, isCopied = 0;
   List imgList = [
-    "assets/tshirt.png",
-    "assets/shirt.jpg",
-    "assets/pant.jpg",
-    "assets/shoe.png"
+    "assets/s1.jpg",
+    "assets/s2.jpg",
+  ];
+
+  List relProductList = [
+    {
+      "image": "assets/shirt1.jpg",
+      "name": "Black Designer Shirt",
+      "price": 35.5,
+      "address": "Korerpara, Sylhet, Bangladesh",
+      "time": "Today",
+    },
+    {
+      "image": "assets/shirt2.jpg",
+      "name": "Cotton Shirt",
+      "price": 56.5,
+      "address": "Pollobi Road, Sylhet, Bangladesh",
+      "time": "2 days ago",
+    },
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -176,7 +192,7 @@ class DetailsPageState extends State<DetailsPage>
                             padding: EdgeInsets.all(5),
                             color: Colors.black,
                             child: Text(
-                              "${_current + 1}/4",
+                              "${_current + 1}/2",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -186,7 +202,7 @@ class DetailsPageState extends State<DetailsPage>
                   ],
                 ),
                 SizedBox(
-                  height: 0,
+                  height: 10,
                 ),
                 // Container(
                 //     width: 50,
@@ -196,7 +212,7 @@ class DetailsPageState extends State<DetailsPage>
                 Container(
                   width: MediaQuery.of(context).size.width,
                   margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
+                      EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -206,37 +222,37 @@ class DetailsPageState extends State<DetailsPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Product Name",
+                        "Shirt",
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            "Seller : ",
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black45),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(right: 3),
-                            child: Text("Appifylab",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: header,
-                                )),
-                          ),
-                          Icon(
-                            Icons.verified_user,
-                            size: 16,
-                            color: header,
-                          ),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(top: 3),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              "Seller : ",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.black45),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 3),
+                              child: Text("Sadek Hossain",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: header,
+                                  )),
+                            ),
+                            Icon(
+                              Icons.verified_user,
+                              size: 16,
+                              color: header,
+                            ),
+                          ],
+                        ),
                       ),
                       // Container(
                       //   margin: EdgeInsets.only(top: 3),
@@ -298,7 +314,7 @@ class DetailsPageState extends State<DetailsPage>
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(5.0)),
-                            color: Colors.yellow[600],
+                            color: subheader,
                             border: Border.all(width: 0.2, color: Colors.grey)),
                         padding: EdgeInsets.only(
                             top: 10, right: 10, bottom: 10, left: 5),
@@ -306,27 +322,38 @@ class DetailsPageState extends State<DetailsPage>
                           children: <Widget>[
                             Icon(
                               Icons.attach_money,
-                              color: Colors.black,
+                              color: Colors.white,
                               size: 20,
                             ),
                             SizedBox(
                               width: 0,
                             ),
                             Text(
-                              "20.25",
+                              "40.5",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 17),
+                                  TextStyle(color: Colors.white, fontSize: 17),
                             )
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(right: 5),
-                        //padding: EdgeInsets.all(5),
-                        child: Icon(
-                          Icons.favorite_border,
-                          color: Colors.grey,
-                          size: 25,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            favorite++;
+                          });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 5),
+                          //padding: EdgeInsets.all(5),
+                          child: Icon(
+                            favorite % 2 == 0
+                                ? Icons.favorite_border
+                                : Icons.favorite,
+                            color: favorite % 2 == 0
+                                ? Colors.grey
+                                : Colors.redAccent,
+                            size: 25,
+                          ),
                         ),
                       ),
                     ],
@@ -370,7 +397,7 @@ class DetailsPageState extends State<DetailsPage>
                                   )),
                                   Container(
                                       child: Text(
-                                    "Sylhet",
+                                    "Modina Market",
                                     textAlign: TextAlign.start,
                                     style: TextStyle(color: Colors.black54),
                                   ))
@@ -450,7 +477,7 @@ class DetailsPageState extends State<DetailsPage>
                                   )),
                                   Container(
                                       child: Text(
-                                    "Just Now",
+                                    "2 days ago",
                                     textAlign: TextAlign.start,
                                     style: TextStyle(color: Colors.black54),
                                   ))
@@ -535,28 +562,33 @@ class DetailsPageState extends State<DetailsPage>
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Expanded(
-                            child: Container(
-                                margin: EdgeInsets.only(right: 0),
-                                //padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.trending_up,
-                                        size: 15, color: Colors.black54),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        "Promote",
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.bold),
+                            child: GestureDetector(
+                              onTap: () {
+                                promoteDialog();
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.only(right: 0),
+                                  //padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.trending_up,
+                                          size: 15, color: Colors.black54),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          "Promote",
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                )),
+                                    ],
+                                  )),
+                            ),
                           ),
                           Container(
                               height: 20,
@@ -564,28 +596,33 @@ class DetailsPageState extends State<DetailsPage>
                                 color: Colors.black54,
                               )),
                           Expanded(
-                            child: Container(
-                                margin: EdgeInsets.only(left: 0),
-                                //padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.report,
-                                        size: 15, color: Colors.black54),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        "Report",
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.bold),
+                            child: GestureDetector(
+                              onTap: () {
+                                reportDialog();
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.only(left: 0),
+                                  //padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.report,
+                                          size: 15, color: Colors.black54),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          "Report",
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                )),
+                                    ],
+                                  )),
+                            ),
                           ),
                           Container(
                               height: 20,
@@ -593,28 +630,36 @@ class DetailsPageState extends State<DetailsPage>
                                 color: Colors.black54,
                               )),
                           Expanded(
-                            child: Container(
-                                margin: EdgeInsets.only(left: 0),
-                                //padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.share,
-                                        size: 15, color: Colors.black54),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        "Share",
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.bold),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  AdvancedShare.generic(
+                                      msg: "https://appifylab.com/");
+                                });
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.only(left: 0),
+                                  //padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.share,
+                                          size: 15, color: Colors.black54),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          "Share",
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                )),
+                                    ],
+                                  )),
+                            ),
                           )
                         ],
                       ),
@@ -646,7 +691,7 @@ class DetailsPageState extends State<DetailsPage>
                             Container(
                                 margin: EdgeInsets.only(right: 10),
                                 child: Text(
-                                  "20 Products",
+                                  "${relProductList.length} Products",
                                   style: TextStyle(
                                       color: Colors.blueAccent, fontSize: 11),
                                 ))
@@ -705,16 +750,22 @@ class DetailsPageState extends State<DetailsPage>
                                           Container(
                                               height: 100,
                                               child: Image.asset(
-                                                  'assets/shirt.jpg')),
+                                                  '${relProductList[index]['image']}')),
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
-                                            "Product Name",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.black54),
-                                            textAlign: TextAlign.center,
+                                          Expanded(
+                                            child: Container(
+                                              child: Text(
+                                                "${relProductList[index]['name']}",
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black54),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 10),
@@ -730,7 +781,7 @@ class DetailsPageState extends State<DetailsPage>
                                                       size: 17,
                                                     ),
                                                     Text(
-                                                      "20.25",
+                                                      "${relProductList[index]['price']}",
                                                       style: TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.black87,
@@ -748,38 +799,52 @@ class DetailsPageState extends State<DetailsPage>
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: <Widget>[
-                                                Row(
-                                                  children: <Widget>[
-                                                    Icon(
-                                                      Icons.location_on,
-                                                      color: Colors.black45,
-                                                      size: 14,
+                                                Expanded(
+                                                  child: Container(
+                                                    child: Row(
+                                                      children: <Widget>[
+                                                        Icon(
+                                                          Icons.location_on,
+                                                          color: Colors.black45,
+                                                          size: 14,
+                                                        ),
+                                                        Expanded(
+                                                          child: Container(
+                                                            child: Text(
+                                                              "${relProductList[index]['address']}",
+                                                              maxLines: 1,
+                                                              overflow: TextOverflow.ellipsis,
+                                                              style: TextStyle(
+                                                                  fontSize: 13,
+                                                                  color:
+                                                                      Colors.black45),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      "Sylhet",
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          color:
-                                                              Colors.black45),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(top: 10),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(
-                                                  "23/07/19  12 PM",
-                                                  style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: Colors.grey),
-                                                ),
-                                              ],
+                                          Expanded(
+                                            child: Container(
+                                              margin: EdgeInsets.only(top: 10),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Container(
+                                                    child: Text(
+                                                      "${relProductList[index]['time']}",
+                                                      style: TextStyle(
+                                                          fontSize: 11,
+                                                          color: Colors.grey),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           )
                                         ],
@@ -787,7 +852,7 @@ class DetailsPageState extends State<DetailsPage>
                                     ),
                                   ),
                                 ),
-                                itemCount: 20,
+                                itemCount: relProductList.length,
                               ),
                             ),
                           ),
@@ -796,77 +861,77 @@ class DetailsPageState extends State<DetailsPage>
                     ],
                   ),
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin:
-                      EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      color: Colors.white,
-                      border: Border.all(width: 0.2, color: Colors.grey)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                                margin: EdgeInsets.only(right: 5),
-                                //padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.chevron_left,
-                                        size: 22, color: header),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        "Previous",
-                                        style: TextStyle(
-                                            color: header,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                          ),
-                          Container(
-                              height: 20,
-                              child: VerticalDivider(
-                                color: Colors.black54,
-                              )),
-                          Expanded(
-                            child: Container(
-                                margin: EdgeInsets.only(left: 5),
-                                //padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      child: Text("Next",
-                                          style: TextStyle(
-                                              color: header,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
-                                    Icon(Icons.chevron_right,
-                                        size: 22, color: header),
-                                  ],
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   margin:
+                //       EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 10),
+                //   padding: EdgeInsets.all(10),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                //       color: Colors.white,
+                //       border: Border.all(width: 0.2, color: Colors.grey)),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: <Widget>[
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //         children: <Widget>[
+                //           Expanded(
+                //             child: Container(
+                //                 margin: EdgeInsets.only(right: 5),
+                //                 //padding: EdgeInsets.all(10),
+                //                 decoration: BoxDecoration(
+                //                   color: Colors.white,
+                //                 ),
+                //                 child: Row(
+                //                   mainAxisAlignment: MainAxisAlignment.center,
+                //                   children: <Widget>[
+                //                     Icon(Icons.chevron_left,
+                //                         size: 22, color: header),
+                //                     Container(
+                //                       margin: EdgeInsets.only(left: 5),
+                //                       child: Text(
+                //                         "Previous",
+                //                         style: TextStyle(
+                //                             color: header,
+                //                             fontWeight: FontWeight.bold),
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 )),
+                //           ),
+                //           Container(
+                //               height: 20,
+                //               child: VerticalDivider(
+                //                 color: Colors.black54,
+                //               )),
+                //           Expanded(
+                //             child: Container(
+                //                 margin: EdgeInsets.only(left: 5),
+                //                 //padding: EdgeInsets.all(10),
+                //                 decoration: BoxDecoration(
+                //                   color: Colors.white,
+                //                 ),
+                //                 child: Row(
+                //                   mainAxisAlignment: MainAxisAlignment.center,
+                //                   children: <Widget>[
+                //                     Container(
+                //                       margin: EdgeInsets.only(left: 5),
+                //                       child: Text("Next",
+                //                           style: TextStyle(
+                //                               color: header,
+                //                               fontWeight: FontWeight.bold)),
+                //                     ),
+                //                     Icon(Icons.chevron_right,
+                //                         size: 22, color: header),
+                //                   ],
+                //                 )),
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -1019,7 +1084,7 @@ class DetailsPageState extends State<DetailsPage>
                       margin: EdgeInsets.only(top: 10),
                       //padding: EdgeInsets.all(10),
                       child: Text(
-                        "Appifylab",
+                        "John Smith",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -1061,7 +1126,7 @@ class DetailsPageState extends State<DetailsPage>
                   GestureDetector(
                     onTap: () {
                       //_callPhone();
-                      launch("tel:+8801781610033");
+                      //launch("tel:+8801781610033");
                     },
                     child: Center(
                       child: Container(
@@ -1105,55 +1170,290 @@ class DetailsPageState extends State<DetailsPage>
               )
             ]),
           ),
-          // content: Container(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: <Widget>[
-          //       Container(
-          //           //padding: EdgeInsets.all(10),
-          //           child: Row(
-          //             children: <Widget>[
-          //               Icon(Icons.phone, color: Colors.black54),
-          //               SizedBox(width: 5,),
-          //               Text(
-          //                 "017XXXXXXXX",
-          //                 style: TextStyle(
-          //                     color: Colors.black54),
-          //               ),
-          //             ],
-          //           )),
-          //     ],
-          //   ),
-          // ),
-          // actions: <Widget>[
-          //   // usually buttons at the bottom of the dialog
-          //   // new FlatButton(
-          //   //   child: new Text("Close"),
-          //   //   onPressed: () {
-          //   //     Navigator.of(context).pop();
-          //   //   },
-          //   // ),
-          //   Center(
-          //     child: Container(
-          //           margin: EdgeInsets.only(left: 10, right: 20),
-          //           padding: EdgeInsets.all(10),
-          //           decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          //               color: header,
-          //               border: Border.all(width: 0.2, color: Colors.grey)),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: <Widget>[
-          //               Container(
-          //                   margin: EdgeInsets.only(left: 5),
-          //                   child: Text("Call",
-          //                       style:
-          //                           TextStyle(color: Colors.white, fontSize: 13)))
-          //             ],
-          //           ),
-          //         ),
-          //   ),
-          // ],
+        );
+      },
+    );
+  }
+
+  void promoteDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final key = new GlobalKey<ScaffoldState>();
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Center(
+            child: Stack(children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                            margin: EdgeInsets.only(top: 10, left: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Promote",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(0),
+                    margin:
+                        EdgeInsets.only(top: 5, left: 10, bottom: 5, right: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: new BorderRadius.only(
+                            topLeft: Radius.circular(5.0),
+                            topRight: Radius.circular(5.0),
+                            bottomLeft: Radius.circular(5.0),
+                            bottomRight: Radius.circular(5.0)),
+                        color: Colors.white,
+                        border: Border.all(width: 0.5, color: Colors.grey)),
+                    child: Row(
+                      children: <Widget>[
+                        // ),
+                        Flexible(
+                          child: new ConstrainedBox(
+                            constraints:
+                                BoxConstraints(maxHeight: 50.0, minHeight: 50),
+                            child: new SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              reverse: true,
+                              child: Container(
+                                alignment: Alignment.topLeft,
+                                child: new TextField(
+                                  cursorColor: Colors.grey,
+                                  //maxLength: 50,
+                                  maxLines: null,
+                                  //controller: reviewController,
+                                  decoration: new InputDecoration(
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                            color: Color(0xFFFFFFFF))),
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                            color: Color(0xFFFFFFFF))),
+                                    hintText: 'https://appifylab.com/',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        //fontFamily: "sourcesanspro",
+                                        fontWeight: FontWeight.w300),
+                                    fillColor: Color(0xFFFFFFFF),
+                                    filled: true,
+                                    contentPadding: EdgeInsets.only(
+                                        left: 5, bottom: 5, top: 5, right: 5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // Clipboard.setData(
+                      //     new ClipboardData(text: "https://appifylab.com/"));
+                      AdvancedShare.generic(msg: "https://appifylab.com/");
+                    },
+                    child: Center(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            color: header,
+                            border: Border.all(width: 0.2, color: Colors.grey)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text("Share",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14)))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                        //padding: EdgeInsets.all(5),
+                        child: Icon(
+                      Icons.cancel,
+                      color: Colors.grey[400],
+                    )),
+                  ),
+                ],
+              )
+            ]),
+          ),
+        );
+      },
+    );
+  }
+
+  void reportDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Center(
+            child: Stack(children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                            margin: EdgeInsets.only(top: 10, left: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Report",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(0),
+                    margin:
+                        EdgeInsets.only(top: 5, left: 10, bottom: 5, right: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: new BorderRadius.only(
+                            topLeft: Radius.circular(5.0),
+                            topRight: Radius.circular(5.0),
+                            bottomLeft: Radius.circular(5.0),
+                            bottomRight: Radius.circular(5.0)),
+                        color: Colors.white,
+                        border: Border.all(width: 0.5, color: Colors.grey)),
+                    child: Row(
+                      children: <Widget>[
+                        // ),
+                        Flexible(
+                          child: new ConstrainedBox(
+                            constraints: BoxConstraints(
+                                maxHeight: 120.0, minHeight: 100),
+                            child: new SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              //reverse: true,
+                              child: Container(
+                                alignment: Alignment.topLeft,
+                                child: new TextField(
+                                  cursorColor: Colors.grey,
+                                  //maxLength: 250,
+                                  maxLines: null,
+                                  //controller: reviewController,
+                                  decoration: new InputDecoration(
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                            color: Color(0xFFFFFFFF))),
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                            color: Color(0xFFFFFFFF))),
+                                    hintText: 'Type your report here...',
+                                    hintStyle: TextStyle(
+                                        color: Color(0xFF9b9b9b),
+                                        fontSize: 13,
+                                        //fontFamily: "sourcesanspro",
+                                        fontWeight: FontWeight.w300),
+                                    fillColor: Color(0xFFFFFFFF),
+                                    filled: true,
+                                    contentPadding: EdgeInsets.only(
+                                        left: 5, bottom: 5, top: 5, right: 5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      //_callPhone();
+                      //launch("tel:+8801781610033");
+                    },
+                    child: Center(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            color: header,
+                            border: Border.all(width: 0.2, color: Colors.grey)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text("Send",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14)))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                        //padding: EdgeInsets.all(5),
+                        child: Icon(
+                      Icons.cancel,
+                      color: Colors.grey[400],
+                    )),
+                  ),
+                ],
+              )
+            ]),
+          ),
         );
       },
     );
@@ -1172,10 +1472,8 @@ class _SomeDialogPageState extends State<SomeDialog> {
   int _current = 0;
   int _isBack = 0;
   List imgList = [
-    "assets/tshirt.png",
-    "assets/shirt.jpg",
-    "assets/pant.jpg",
-    "assets/shoe.png"
+    "assets/s1.jpg",
+    "assets/s2.jpg",
   ];
 
   @override

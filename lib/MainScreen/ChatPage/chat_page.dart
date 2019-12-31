@@ -36,7 +36,7 @@ class _ChatPageState extends State<ChatPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("User Name",
+                  Text("Sadek Hossain",
                       style: TextStyle(fontSize: 20, color: Colors.white)),
                 ],
               ),
@@ -66,7 +66,7 @@ class _ChatPageState extends State<ChatPage> {
                           border: Border.all(width: 0.5, color: Colors.grey),
                         ),
                         child: Image.asset(
-                          'assets/shirt.jpg',
+                          'assets/s1.jpg',
                           width: 40,
                           height: 30,
                         ),
@@ -83,7 +83,7 @@ class _ChatPageState extends State<ChatPage> {
                               Container(
                                 margin: EdgeInsets.only(left: 3),
                                 child: Text(
-                                  "Product Name",
+                                  "Shirt",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(

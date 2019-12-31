@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 
 class ProductLandCard extends StatefulWidget {
-  final index;
-  ProductLandCard(this.index);
+  final productList;
+  ProductLandCard(this.productList);
   @override
   _ProductLandCardState createState() => _ProductLandCardState();
 }
@@ -48,16 +48,14 @@ class _ProductLandCardState extends State<ProductLandCard> {
                           padding: const EdgeInsets.all(5.0),
                           margin: EdgeInsets.only(top: 5),
                           child: Image.asset(
-                            widget.index % 2 == 0
-                                ? 'assets/tshirt.png'
-                                : 'assets/shirt.jpg',
+                            '${widget.productList['image']}',
                             height: 110,
                             width: 100,
                           ),
                         ),
                       ),
                       ////// <<<<< Picture end >>>>> //////
-                      
+
                       ////// <<<<< New tag start >>>>> //////
                       Container(
                         margin: EdgeInsets.only(top: 12),
@@ -66,11 +64,13 @@ class _ProductLandCardState extends State<ProductLandCard> {
                           children: <Widget>[
                             Container(
                                 padding: EdgeInsets.all(5),
-                                color: widget.index % 2 == 0
+                                color: widget.productList['tag'] != ""
                                     ? header
                                     : Colors.transparent,
                                 child: Text(
-                                  widget.index % 2 == 0 ? "New" : "",
+                                  widget.productList['tag'] != ""
+                                      ? "${widget.productList['tag']}"
+                                      : "",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 12),
                                 )),
@@ -97,14 +97,12 @@ class _ProductLandCardState extends State<ProductLandCard> {
                                 children: <Widget>[
                                   ////// <<<<< Product name start >>>>> //////
                                   Expanded(
-                                    child: Text(
-                                        widget.index % 2 == 0
-                                            ? "Product Name DB"
-                                            : "Product Name from list",
+                                    child: Text("${widget.productList['name']}",
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             fontSize: 13,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.black87)),
                                   ),
                                   ////// <<<<< Product name end >>>>> //////
@@ -125,16 +123,14 @@ class _ProductLandCardState extends State<ProductLandCard> {
                                       children: <Widget>[
                                         Icon(
                                           Icons.attach_money,
-                                          color: Colors.black87,
+                                          color: header,
                                           size: 18,
                                         ),
                                         Text(
-                                          widget.index % 2 == 0
-                                              ? "20.25"
-                                              : "100.25",
+                                          "${widget.productList['price']}",
                                           style: TextStyle(
                                               fontSize: 16,
-                                              color: Colors.black87,
+                                              color: header,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
@@ -144,8 +140,7 @@ class _ProductLandCardState extends State<ProductLandCard> {
                               ),
                             ),
                             ////// <<<<< Product price end >>>>> //////
-                            
-                            
+
                             ////// <<<<< Product place start >>>>> //////
                             Container(
                               margin: EdgeInsets.only(top: 8, left: 8),
@@ -173,9 +168,7 @@ class _ProductLandCardState extends State<ProductLandCard> {
                                             child: Container(
                                               margin: EdgeInsets.only(left: 3),
                                               child: Text(
-                                                  widget.index % 2 == 0
-                                                      ? "Modina Market Sylhet BD"
-                                                      : "Zindabazar Sylhet",
+                                                  "${widget.productList['address']}",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -194,7 +187,7 @@ class _ProductLandCardState extends State<ProductLandCard> {
                               ),
                             ),
                             ////// <<<<< Product price end >>>>> //////
-                            
+
                             ////// <<<<< Time start >>>>> //////
                             Container(
                               margin: EdgeInsets.only(
@@ -208,10 +201,7 @@ class _ProductLandCardState extends State<ProductLandCard> {
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(left: 3),
-                                    child: Text(
-                                        widget.index % 2 == 0
-                                            ? "Just Now"
-                                            : "2 days ago",
+                                    child: Text("${widget.productList['time']}",
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 10)),
                                   ),

@@ -56,8 +56,8 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
                           padding: EdgeInsets.all(1.0),
                           child: CircleAvatar(
                             radius: 30.0,
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: AssetImage('assets/user.png'),
+                            backgroundColor: Colors.white,
+                            backgroundImage: AssetImage('assets/man.png'),
                           ),
                           decoration: new BoxDecoration(
                             color: Colors.grey, // border color
@@ -113,7 +113,7 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
                                 Container(
                                     margin: EdgeInsets.only(left: 8, top: 3),
                                     child: Text(
-                                      "Modina Market",
+                                      "Sanfrancisco, USA",
                                       style: TextStyle(
                                           color: Colors.black38, fontSize: 15),
                                     ))
@@ -151,7 +151,7 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
                                 Container(
                                     margin: EdgeInsets.only(left: 8, top: 3),
                                     child: Text(
-                                      "017XXXXXXXX",
+                                      "91XXXXXXXX",
                                       style: TextStyle(
                                           color: Colors.black38, fontSize: 15),
                                     ))

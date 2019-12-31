@@ -12,6 +12,18 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   bool internet = true;
+
+  List productList = [
+    {
+      "image": "assets/hoody.jpg",
+      "name": "Hoody",
+      "tag": "20% Off",
+      "price": 40.0,
+      "address": "Baghbari",
+      "time": "20 days ago",
+    },
+  ];
+
   @override
   void initState() {
     internetCheck();
@@ -90,9 +102,9 @@ class _PostPageState extends State<PostPage> {
                                       (BuildContext context, int index) =>
                                           new Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: ProductPortraitCard(index),
+                                    child: ProductPortraitCard(productList[index]),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 )
                               : GridView.builder(
                                   gridDelegate:
@@ -110,9 +122,9 @@ class _PostPageState extends State<PostPage> {
                                       (BuildContext context, int index) =>
                                           new Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: ProductLandCard(index),
+                                    child: ProductLandCard(productList[index]),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 );
                         },
                       ))

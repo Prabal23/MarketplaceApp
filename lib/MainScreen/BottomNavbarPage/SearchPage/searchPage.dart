@@ -61,7 +61,7 @@ class SearchPageState extends State<SearchPage>
                             color: Colors.black38,
                           ),
                         ),
-                        hintText: 'Search a location...',
+                        hintText: 'Type a product name...',
                         //labelText: 'Enter E-mail',
                         contentPadding:
                             EdgeInsets.fromLTRB(0.0, 5.0, 20.0, 5.0),

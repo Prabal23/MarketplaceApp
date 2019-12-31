@@ -39,12 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      margin: EdgeInsets.only(right: 5),
-                      width: 25,
+                      margin: EdgeInsets.only(right: 10),
+                      width: 20,
                       child: Image.asset(
-                        'assets/bikroy.png',
+                        'assets/shopping-cart.png',
                       )),
-                  Text("Market Place",
+                  Text("Listifypro UI Kit",
                       style: TextStyle(fontSize: 20, color: Colors.white)),
                 ],
               ),
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
                 icon: Container(
                     decoration: BoxDecoration(
-                        color: Colors.yellow[800],
+                        color: subheader,
                         borderRadius: BorderRadius.circular(25)),
                     padding: EdgeInsets.all(12),
                     child: Icon(Icons.add, size: 20, color: Colors.white)),

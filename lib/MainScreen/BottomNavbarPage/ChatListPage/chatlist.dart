@@ -15,15 +15,15 @@ class ChatListPage extends StatefulWidget {
 }
 
 class _ChatListPageState extends State<ChatListPage> {
-  int _current = 0;
+  int _current = 1;
   int _isBack = 0;
   String result = '';
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await showDialogBox();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await showDialogBox();
+    // });
     super.initState();
   }
 
@@ -858,7 +858,7 @@ class _ChatListPageState extends State<ChatListPage> {
                                                                 EdgeInsets.only(
                                                                     right: 15),
                                                             child: Text(
-                                                              "Hachibur Rahman",
+                                                              "Mohammad Amran",
                                                               maxLines: 1,
                                                               overflow:
                                                                   TextOverflow

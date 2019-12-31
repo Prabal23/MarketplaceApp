@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 
 class ProductPortraitCard extends StatefulWidget {
-  final index;
-  ProductPortraitCard(this.index);
+  final productList;
+  ProductPortraitCard(this.productList);
   @override
   _ProductPortraitCardState createState() => _ProductPortraitCardState();
 }
@@ -49,16 +49,14 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                             padding: const EdgeInsets.all(5.0),
                             margin: EdgeInsets.only(top: 5),
                             child: Image.asset(
-                              widget.index % 2 == 0
-                                  ? 'assets/tshirt.png'
-                                  : 'assets/shirt.jpg',
+                              '${widget.productList['image']}',
                               height: 130,
                               width: 120,
                             ),
                           ),
                         ),
                         ////// <<<<< Pic end >>>>> //////
-                        
+
                         ////// <<<<< New tag start >>>>> //////
                         Container(
                           margin: EdgeInsets.only(top: 12),
@@ -67,11 +65,13 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                             children: <Widget>[
                               Container(
                                   padding: EdgeInsets.all(5),
-                                  color: widget.index % 2 == 0
+                                  color: widget.productList['tag'] != ""
                                       ? header
                                       : Colors.transparent,
                                   child: Text(
-                                    widget.index % 2 == 0 ? "New" : "",
+                                    widget.productList['tag'] != ""
+                                        ? "${widget.productList['tag']}"
+                                        : "",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12),
                                   )),
@@ -92,13 +92,11 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                       children: <Widget>[
                         ////// <<<<< Name start >>>>> //////
                         Expanded(
-                          child: Text(
-                              widget.index % 2 == 0
-                                  ? "Product Name DB"
-                                  : "Product Name from list",
+                          child: Text("${widget.productList['name']}",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                   fontSize: 13, color: Colors.black87)),
                         ),
                         ////// <<<<< Name end >>>>> //////
@@ -119,14 +117,14 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                             children: <Widget>[
                               Icon(
                                 Icons.attach_money,
-                                color: Colors.black87,
+                                color: header,
                                 size: 18,
                               ),
                               Text(
-                                widget.index % 2 == 0 ? "20.25" : "100.25",
+                                "${widget.productList['price']}",
                                 style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.black87,
+                                    color: header,
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -160,9 +158,7 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                                   child: Container(
                                     margin: EdgeInsets.only(left: 3),
                                     child: Text(
-                                        widget.index % 2 == 0
-                                            ? "Modina Market Sylhet BD"
-                                            : "Zindabazar Sylhet",
+                                        "${widget.productList['address']}",
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -176,16 +172,13 @@ class _ProductPortraitCardState extends State<ProductPortraitCard> {
                           ),
                         ),
                         ////// <<<<< Place end >>>>> //////
-                        
+
                         ////// <<<<< Time start >>>>> //////
                         Container(
                           margin: EdgeInsets.only(right: 8, top: 0, bottom: 10),
                           child: Row(
                             children: <Widget>[
-                              Text(
-                                  widget.index % 2 == 0
-                                      ? "Just Now"
-                                      : "2 days ago",
+                              Text("${widget.productList['time']}",
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 10)),
                             ],

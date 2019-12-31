@@ -10,6 +10,26 @@ class FavouritePage extends StatefulWidget {
 
 class _FavouritePageState extends State<FavouritePage> {
   bool internet = true;
+
+  List productList = [
+    {
+      "image": "assets/watch.jpeg",
+      "name": "Watch",
+      "tag": "35% Off",
+      "price": 56.5,
+      "address": "Akhalia",
+      "time": "Just Now",
+    },
+    {
+      "image": "assets/tshirt.png",
+      "name": "T-shirt",
+      "tag": "",
+      "price": 34.0,
+      "address": "Bondor Bazar",
+      "time": "5 days ago",
+    },
+  ];
+
   @override
   void initState() {
     internetCheck();
@@ -131,57 +151,58 @@ class _FavouritePageState extends State<FavouritePage> {
                                                         MediaQuery.of(context)
                                                             .size
                                                             .width,
-                                                    child: Stack(children: <
-                                                        Widget>[
-                                                      Center(
-                                                        child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(5.0),
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  top: 5),
-                                                          child: Image.asset(
-                                                            index % 2 == 0
-                                                                ? 'assets/tshirt.png'
-                                                                : 'assets/shirt.jpg',
-                                                            height: 130,
-                                                            width: 120,
+                                                    child: Stack(
+                                                        children: <Widget>[
+                                                          Center(
+                                                            child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(5.0),
+                                                              margin: EdgeInsets
+                                                                  .only(top: 5),
+                                                              child:
+                                                                  Image.asset(
+                                                                '${productList[index]['image']}',
+                                                                height: 130,
+                                                                width: 120,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        margin: EdgeInsets.only(
-                                                            top: 12),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(5),
-                                                                color: index %
-                                                                            2 ==
-                                                                        0
-                                                                    ? header
-                                                                    : Colors
-                                                                        .transparent,
-                                                                child: Text(
-                                                                  index % 2 == 0
-                                                                      ? "New"
-                                                                      : "",
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          12),
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      )
-                                                    ]),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    top: 12),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: <
+                                                                  Widget>[
+                                                                Container(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .all(
+                                                                                5),
+                                                                    color: productList[index]['tag'] !=
+                                                                            ""
+                                                                        ? header
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    child: Text(
+                                                                      productList[index]['tag'] !=
+                                                                              ""
+                                                                          ? "${productList[index]['tag']}"
+                                                                          : "",
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontSize:
+                                                                              12),
+                                                                    )),
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ]),
                                                   )),
                                                 ),
                                                 Divider(
@@ -196,9 +217,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                     children: <Widget>[
                                                       Expanded(
                                                         child: Text(
-                                                            index % 2 == 0
-                                                                ? "Product Name DB"
-                                                                : "Product Name from list",
+                                                            "${productList[index]['name']}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -233,9 +252,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                               size: 18,
                                                             ),
                                                             Text(
-                                                              index % 2 == 0
-                                                                  ? "20.25"
-                                                                  : "100.25",
+                                                              "${productList[index]['price']}",
                                                               style: TextStyle(
                                                                   fontSize: 16,
                                                                   color: Colors
@@ -330,9 +347,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                                           left:
                                                                               3),
                                                                   child: Text(
-                                                                      index % 2 == 0
-                                                                          ? "Modina Market Sylhet BD"
-                                                                          : "Zindabazar Sylhet",
+                                                                      "${productList[index]['address']}",
                                                                       maxLines:
                                                                           1,
                                                                       overflow:
@@ -359,9 +374,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                         child: Row(
                                                           children: <Widget>[
                                                             Text(
-                                                                index % 2 == 0
-                                                                    ? "Just Now"
-                                                                    : "2 days ago",
+                                                                "${productList[index]['time']}",
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .grey,
@@ -380,7 +393,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                       ),
                                     ),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 )
                               : GridView.builder(
                                   gridDelegate:
@@ -439,56 +452,59 @@ class _FavouritePageState extends State<FavouritePage> {
                                                 Container(
                                                     //height: 150,
                                                     child: Container(
-                                                  child:
-                                                      Stack(children: <Widget>[
-                                                    Center(
-                                                      child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        margin: EdgeInsets.only(
-                                                            top: 5),
-                                                        child: Image.asset(
-                                                          index % 2 == 0
-                                                              ? 'assets/tshirt.png'
-                                                              : 'assets/shirt.jpg',
-                                                          height: 110,
-                                                          width: 100,
+                                                  child: Stack(
+                                                      children: <Widget>[
+                                                        Center(
+                                                          child: Container(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(5.0),
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    top: 5),
+                                                            child: Image.asset(
+                                                              '${productList[index]['image']}',
+                                                              height: 110,
+                                                              width: 100,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          top: 12),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: <Widget>[
-                                                          Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
-                                                              color: index %
-                                                                          2 ==
-                                                                      0
-                                                                  ? header
-                                                                  : Colors
-                                                                      .transparent,
-                                                              child: Text(
-                                                                index % 2 == 0
-                                                                    ? "New"
-                                                                    : "",
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        12),
-                                                              )),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ]),
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  top: 12),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: <Widget>[
+                                                              Container(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              5),
+                                                                  color: productList[index]
+                                                                              [
+                                                                              'tag'] !=
+                                                                          ""
+                                                                      ? header
+                                                                      : Colors
+                                                                          .transparent,
+                                                                  child: Text(
+                                                                    productList[index]['tag'] !=
+                                                                            ""
+                                                                        ? "${productList[index]['tag']}"
+                                                                        : "",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ]),
                                                 )),
                                                 VerticalDivider(
                                                   color: Colors.grey[300],
@@ -516,10 +532,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                               children: <
                                                                   Widget>[
                                                                 Expanded(
-                                                                  child: Text(
-                                                                      index % 2 == 0
-                                                                          ? "Product Name DB"
-                                                                          : "Product Name from list",
+                                                                  child: Text("${productList[index]['name']}",
                                                                       maxLines:
                                                                           1,
                                                                       overflow:
@@ -562,11 +575,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                                         size:
                                                                             18,
                                                                       ),
-                                                                      Text(
-                                                                        index % 2 ==
-                                                                                0
-                                                                            ? "20.25"
-                                                                            : "100.25",
+                                                                      Text("${productList[index]['price']}",
                                                                         style: TextStyle(
                                                                             fontSize:
                                                                                 16,
@@ -668,7 +677,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                                               Container(
                                                                             margin:
                                                                                 EdgeInsets.only(left: 3),
-                                                                            child: Text(index % 2 == 0 ? "Modina Market Sylhet BD" : "Zindabazar Sylhet",
+                                                                            child: Text("${productList[index]['address']}",
                                                                                 maxLines: 1,
                                                                                 overflow: TextOverflow.ellipsis,
                                                                                 style: TextStyle(fontSize: 10, color: Colors.grey, fontWeight: FontWeight.bold)),
@@ -702,11 +711,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                                                       .only(
                                                                           left:
                                                                               3),
-                                                                  child: Text(
-                                                                      index % 2 ==
-                                                                              0
-                                                                          ? "Just Now"
-                                                                          : "2 days ago",
+                                                                  child: Text("${productList[index]['time']}",
                                                                       style: TextStyle(
                                                                           color: Colors
                                                                               .grey,
@@ -728,7 +733,7 @@ class _FavouritePageState extends State<FavouritePage> {
                                       ),
                                     ),
                                   ),
-                                  itemCount: 20,
+                                  itemCount: productList.length,
                                 );
                         },
                       ))

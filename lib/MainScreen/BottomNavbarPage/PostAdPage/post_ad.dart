@@ -27,7 +27,7 @@ class _PostAdPageState extends State<PostAdPage> {
   TextEditingController descController = new TextEditingController();
   TextEditingController priceController = new TextEditingController();
   List images;
-  int maxImageNo = 5, _current = 0;
+  int maxImageNo = 5, _current = 1;
   bool selectSingleImage = false;
   var imgs;
 
@@ -72,9 +72,9 @@ class _PostAdPageState extends State<PostAdPage> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await showDialogBox();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await showDialogBox();
+    // });
     super.initState();
   }
 
@@ -1138,7 +1138,7 @@ class _PostAdPageState extends State<PostAdPage> {
                                                 //color: Colors.grey[200],
                                                 //padding: EdgeInsets.all(20),
                                                 child: Text(
-                                              "Appifylab",
+                                              "John Smith",
                                               style: TextStyle(
                                                   color: Colors.black54),
                                             )),
@@ -1171,7 +1171,7 @@ class _PostAdPageState extends State<PostAdPage> {
                                                       margin: EdgeInsets.only(
                                                           left: 5),
                                                       child: Text(
-                                                        "Modina Market",
+                                                        "Sanfrancisco, USA",
                                                         style: TextStyle(
                                                             color: Colors.grey),
                                                       )),
@@ -1207,7 +1207,7 @@ class _PostAdPageState extends State<PostAdPage> {
                                                       margin: EdgeInsets.only(
                                                           left: 5),
                                                       child: Text(
-                                                        "017XXXXXXXX",
+                                                        "91XXXXXXXX",
                                                         style: TextStyle(
                                                             color: Colors.grey),
                                                       )),

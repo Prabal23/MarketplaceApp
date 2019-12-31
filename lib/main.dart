@@ -4,8 +4,8 @@ import 'MainScreen/Homepage/homepage.dart';
 
 void main() => runApp(MyApp());
 
-Color header = Color(0xFF009877);
-Color subheader = Colors.lightBlue;
+Color header = Color(0xFF075E54);
+Color subheader = Color(0xFF20C65A);
 Color sub_white = Color(0xFFf4f4f4);
 Color golden = Color(0xFFCFB53B);
 Color chat_back = Color(0xFFEAE7E2);
