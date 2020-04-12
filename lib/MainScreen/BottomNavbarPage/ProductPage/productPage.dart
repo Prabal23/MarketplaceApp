@@ -19,6 +19,14 @@ class ProductPageState extends State<ProductPage> {
 
   List productList = [
     {
+      "image": "assets/s1.jpg",
+      "name": "Shirt",
+      "tag": "New",
+      "price": 40.5,
+      "address": "Modina Market",
+      "time": "2 days ago",
+    },
+    {
       "image": "assets/pant.jpg",
       "name": "Pant",
       "tag": "",
@@ -41,14 +49,6 @@ class ProductPageState extends State<ProductPage> {
       "price": 43.0,
       "address": "Subidbazar",
       "time": "2 hours ago",
-    },
-    {
-      "image": "assets/s1.jpg",
-      "name": "Shirt",
-      "tag": "New",
-      "price": 40.5,
-      "address": "Modina Market",
-      "time": "2 days ago",
     },
     {
       "image": "assets/tshirt.png",
@@ -243,7 +243,8 @@ class ProductPageState extends State<ProductPage> {
                                       (BuildContext context, int index) =>
                                           new Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: ProductPortraitCard(productList[index]),
+                                    child:
+                                        ProductPortraitCard(productList[index]),
                                   ),
                                   itemCount: productList.length,
                                 )

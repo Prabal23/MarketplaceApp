@@ -1258,30 +1258,35 @@ class _PostAdPageState extends State<PostAdPage> {
                                 ),
                               ],
                             )),
-                        Container(
-                          margin: EdgeInsets.only(
-                              left: 20, right: 20, bottom: 20, top: 10),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
-                              color: header,
-                              border:
-                                  Border.all(width: 0.2, color: Colors.grey)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.send,
-                                size: 16,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                  margin: EdgeInsets.only(left: 5),
-                                  child: Text("Post Ad",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 17)))
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            createPost();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                left: 20, right: 20, bottom: 20, top: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                color: header,
+                                border:
+                                    Border.all(width: 0.2, color: Colors.grey)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.send,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                                Container(
+                                    margin: EdgeInsets.only(left: 5),
+                                    child: Text("Post Ad",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 17)))
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -1305,5 +1310,97 @@ class _PostAdPageState extends State<PostAdPage> {
           return new CategorySearchDialog();
         },
         fullscreenDialog: true));
+  }
+
+  void createPost() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Center(
+            child: Stack(children: <Widget>[
+              Column(
+                children: <Widget>[
+                  // Container(
+                  //   //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+                  //   padding: EdgeInsets.all(1.0),
+                  //   child: CircleAvatar(
+                  //     radius: 20.0,
+                  //     backgroundColor: Colors.transparent,
+                  //     backgroundImage: AssetImage('assets/user.png'),
+                  //   ),
+                  //   decoration: new BoxDecoration(
+                  //     color: Colors.grey, // border color
+                  //     shape: BoxShape.circle,
+                  //   ),
+                  // ),
+                  Container(
+                      margin: EdgeInsets.only(top: 10),
+                      //padding: EdgeInsets.all(10),
+                      child: Text(
+                        "Post created successfully!",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: header,
+                          fontSize: 18,
+                        ),
+                      )),
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      //_callPhone();
+                      //launch("tel:+8801781610033");
+                    },
+                    child: Center(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10, right: 20, top: 20),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            color: header,
+                            border: Border.all(width: 0.2, color: Colors.grey)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text("OK",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14)))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: <Widget>[
+              //     GestureDetector(
+              //       onTap: () {
+              //         Navigator.of(context).pop();
+              //       },
+              //       child: Container(
+              //           //padding: EdgeInsets.all(5),
+              //           child: Icon(
+              //         Icons.cancel,
+              //         color: Colors.grey[400],
+              //       )),
+              //     ),
+              //   ],
+              // )
+            ]),
+          ),
+        );
+      },
+    );
   }
 }

@@ -235,8 +235,8 @@ class DetailsPageState extends State<DetailsPage>
                           children: <Widget>[
                             Text(
                               "Seller : ",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black45),
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.black45),
                             ),
                             Container(
                               margin: EdgeInsets.only(right: 3),
@@ -813,11 +813,13 @@ class DetailsPageState extends State<DetailsPage>
                                                             child: Text(
                                                               "${relProductList[index]['address']}",
                                                               maxLines: 1,
-                                                              overflow: TextOverflow.ellipsis,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
                                                               style: TextStyle(
                                                                   fontSize: 13,
-                                                                  color:
-                                                                      Colors.black45),
+                                                                  color: Colors
+                                                                      .black45),
                                                             ),
                                                           ),
                                                         ),
@@ -1409,6 +1411,7 @@ class DetailsPageState extends State<DetailsPage>
                   ),
                   GestureDetector(
                     onTap: () {
+                      Navigator.pop(context);
                       //_callPhone();
                       //launch("tel:+8801781610033");
                     },

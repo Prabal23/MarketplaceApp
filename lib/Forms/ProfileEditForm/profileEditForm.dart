@@ -518,6 +518,7 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
 
                   GestureDetector(
                     onTap: () {
+                      Navigator.pop(context);
                       //_callPhone();
                       //launch("tel:+8801781610033");
                     },
